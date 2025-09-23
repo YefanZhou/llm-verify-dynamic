@@ -235,7 +235,7 @@
                     <div class="publication-links">
                          <!-- TODO: Update with your arXiv paper ID -->
                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        <a href="https://arxiv.org/abs/2509.17995" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -256,23 +256,16 @@
                   </span>-->
 
                   <!-- TODO: Replace with your GitHub repository URL -->
-                  <!--<span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                  <span class="link-block">
+                    <a href="https://github.com/YefanZhou/llm-verify-dynamics" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
                     <span>Code</span>
                   </a>
-                </span>-->
-                <span class="link-block">
-                  <a class="external-link button is-normal is-rounded is-dark" disabled>
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code coming soon</span>
-                  </a>
                 </span>
+                
 
                 <!-- TODO: Update with your arXiv paper ID -->
                 <!--<span class="link-block">
@@ -302,7 +295,7 @@
       
       <!-- Optional: caption/description -->
       <h2 class="subtitle has-text-centered">
-        Our study of LLM verification dynamics reveals how problem difficulty, generator capability, and verifiers' generation capability influence verification performance.
+        Our study of LLM verification dynamics reveals how problem difficulty, generator capability, and verifier generation capability influence verification performance.
       </h2>
     </div>
   </div>
@@ -325,7 +318,7 @@
             Our experiments reveal three key findings about verification effectiveness:
             (1) Easy problems allow verifiers to more reliably certify correct responses;  
             (2) Weak generators produce errors that are easier to detect than strong generators; 
-            (3) Verification ability is generally correlated with the verifier's own problem-solving capability, but this relationship varies with problem difficulty. These findings reveal opportunities to optimize basic verification strategies in TTS applications. First, given the same verifier, some weak generators can nearly match stronger ones in post-verification TTS performance (e.g., the Gemma2-9B to Gemma2-27B performance gap shrinks by 75.5%). Second, we identify cases where strong verifiers offer limited advantage over weak ones, as both fail to provide meaningful verification gains, suggesting that verifier scaling alone cannot overcome fundamental verification challenges.
+            (3) Verification ability is generally correlated with the verifier's own problem-solving capability, but this relationship varies with problem difficulty. These findings reveal opportunities to optimize basic verification strategies in TTS applications. First, given the same verifier, some weak generators can nearly match stronger ones in post-verification TTS performance (e.g., the Gemma2-9B to Gemma2-27B performance gap shrinks by 75.7%). Second, we identify cases where strong verifiers offer limited advantage over weak ones, as both fail to provide meaningful verification gains, suggesting that verifier scaling alone cannot overcome fundamental verification challenges.
           </p>
         </div>
       </div>
@@ -335,7 +328,20 @@
 <!-- End paper abstract -->
 
 
-
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="notification is-info is-light">
+          <p class="is-size-5">
+            <strong>📊 More results will be updated soon!</strong><br>
+            <span class="is-size-6">Check back for additional experiments, ablation studies, and analysis.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -349,13 +355,13 @@
           <span class="copy-text">Copy</span>
         </button>
       </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
+      <pre id="bibtex-code"><code>@article{zhou2025variation,
+        title={Variation in Verification: Understanding Verification Dynamics in Large Language Models},
+        author={Zhou, Yefan and Xu, Austin and Zhou, Yilun and Singh, Janvijay and Gui, Jiang and Joty, Shafiq},
+        journal={arXiv preprint arXiv:2509.17995},
+        year={2025},
+        url={https://arxiv.org/abs/2509.17995}
+      }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
