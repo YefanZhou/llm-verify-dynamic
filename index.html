@@ -265,7 +265,16 @@
                     <span>Code</span>
                   </a>
                 </span>
-                
+
+                  <span class="link-block">
+                    <a href="https://huggingface.co/collections/YefanZhou98/llm-verification-dynamics" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <img src="https://huggingface.co/favicon.ico" alt="Hugging Face" width="20" height="20" style="vertical-align: middle;">
+                    </span>
+                    <span>Hugging Face</span>
+                  </a>
+                </span>
 
                 <!-- TODO: Update with your arXiv paper ID -->
                 <!--<span class="link-block">
@@ -328,16 +337,140 @@
 <!-- End paper abstract -->
 
 
+<!-- ===================== RQ1 ===================== -->
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <div class="notification is-info is-light">
-          <p class="is-size-5">
-            <strong>📊 More results will be updated soon!</strong><br>
-            <span class="is-size-6">Check back for additional experiments, ablation studies, and analysis.</span>
-          </p>
-        </div>
+    <h2 class="title is-3 has-text-centered" style="margin-bottom:0.5rem;">
+      🔍 RQ1: How does problem difficulty affect verification?
+    </h2>
+    <p class="has-text-centered is-size-5" style="margin-bottom:2rem;">
+      <strong>Finding:</strong> Problem difficulty primarily affects TPR of verification — easy problems allow verifiers to more reliably certify correct responses.
+    </p>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="image">
+          <img src="static/images/rq1.png" alt="Figure 2: TPR and TNR across problem difficulties">
+        </figure>
+        <p class="has-text-centered is-size-6 mt-2">
+          <strong>Figure 2.</strong> Each curve shows a verifier's performance across four difficulty quartiles. TPR (top row) rises steadily from hardest to easiest problems across all model families and domains, while TNR (bottom row) shows no consistent trend with difficulty.
+        </p>
+      </div>
+    </div>
+
+    <div class="columns is-centered mt-5">
+      <div class="column is-half">
+        <figure class="image">
+          <img src="static/images/rq1_1.png" alt="Figure 3: False negatives with solving mistakes vs problem difficulty">
+        </figure>
+        <p class="has-text-centered is-size-6 mt-2">
+          <strong>Figure 3.</strong> <em>Why?</em> On the hardest problems, 49% of correct responses are falsely rejected (FN), and 18% of those FNs stem from the verifier making solving mistakes in its own CoT — confirming that faulty reference generation drives false negatives on difficult problems.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RQ2 ===================== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered" style="margin-bottom:0.5rem;">
+      🔍 RQ2: How does generator capability affect verification?
+    </h2>
+    <p class="has-text-centered is-size-5" style="margin-bottom:2rem;">
+      <strong>Finding:</strong> Generator capability primarily affects TNR — errors made by weak generators are easier to detect than those made by strong generators.
+    </p>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="image">
+          <img src="static/images/rq2.png" alt="Figure 4: Heatmaps of TPR and TNR across 15×15 verifier–generator pairs">
+        </figure>
+        <p class="has-text-centered is-size-6 mt-2">
+          <strong>Figure 4.</strong> Heatmaps of TPR (top) and TNR (bottom) for all 15 verifier × 15 generator pairs across three domains. TPR is uniformly high and changes little with generator strength; TNR drops sharply as generators become more capable (heatmap shifts from red to blue left-to-right in the bottom row).
+        </p>
+      </div>
+    </div>
+
+    <div class="columns is-centered mt-5">
+      <div class="column is-half">
+        <figure class="image">
+          <img src="static/images/rq2_1.png" alt="Figure 5: Surface-level error rate vs generator capability">
+        </figure>
+        <p class="has-text-centered is-size-6 mt-2">
+          <strong>Figure 5.</strong> <em>Why?</em> Stronger generators produce fewer surface-level errors (self-contradictions, basic arithmetic mistakes, incomplete responses). As these obvious errors disappear, incorrect solutions become harder to detect, causing TNR to fall.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RQ3 ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered" style="margin-bottom:0.5rem;">
+      🔍 RQ3: How does verifier capability affect verification?
+    </h2>
+    <p class="has-text-centered is-size-5" style="margin-bottom:2rem;">
+      <strong>Finding:</strong> Verifier generation capability correlates with verification performance in a difficulty-dependent, non-linear way — linear on medium problems, threshold-limited on hard, and saturated on easy.
+    </p>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="image">
+          <img src="static/images/rq3.png" alt="Figure 6: Balanced accuracy vs verifier generation capability, all data and stratified">
+        </figure>
+        <p class="has-text-centered is-size-6 mt-2">
+          <strong>Figure 6.</strong> (Top) Averaged over all problems, a strong linear correlation (r ≥ 0.90) exists between a verifier's generation capability and its balanced accuracy. (Bottom) Stratified by difficulty: medium problems (yellow) show near-perfect linear correlation (r > 0.90); hard problems (blue) plateau — extra verifier capability yields little gain; easy problems (pink) show a sharp threshold effect where even modest capability jumps produce large accuracy improvements.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TTS Applications ===================== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered" style="margin-bottom:0.5rem;">
+      ⚡ Application to Test-Time Scaling (TTS)
+    </h2>
+    <p class="has-text-centered is-size-5" style="margin-bottom:2.5rem;">
+      Our findings reveal practical opportunities to optimize compute allocation in verifier-based TTS.
+    </p>
+
+    <!-- RQ4 -->
+    <h3 class="title is-4 has-text-centered" style="margin-bottom:0.4rem;">
+      RQ4: Can a weak generator match a stronger one in TTS?
+    </h3>
+    <p class="has-text-centered is-size-6" style="margin-bottom:1.5rem;">
+      <strong>Yes.</strong> Given the same verifier, weak-to-medium generators can nearly close the gap with much stronger generators after verification, because their higher TNR leads to peak verification gains.
+    </p>
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="image">
+          <img src="static/images/rq4.png" alt="Figure 7: TTS pass rate before and after verification, and verification gain vs generator strength">
+        </figure>
+        <p class="has-text-centered is-size-6 mt-2">
+          <strong>Figure 7.</strong> (a) Pass rate before (blue) and after (orange) verification with a fixed verifier (GPT-4o), across generators ordered by capability. Weak generators improve dramatically — e.g., Gemma2-9B approaches Gemma2-27B post-verification, closing 75.7% of the gap. (b) Verification gain (bars) peaks at weak-to-medium generators because they achieve high TNR (effective error filtering) while maintaining moderate TPR. As generators strengthen, TNR collapses and gains diminish.
+        </p>
+      </div>
+    </div>
+
+    <!-- RQ5 -->
+    <h3 class="title is-4 has-text-centered" style="margin-top:3rem; margin-bottom:0.4rem;">
+      RQ5: Can a weak verifier match the gains of a strong verifier in TTS?
+    </h3>
+    <p class="has-text-centered is-size-6" style="margin-bottom:1.5rem;">
+      <strong>In certain regimes, yes.</strong> The gap between a strong verifier (GPT-4o) and a weak verifier (Qwen2.5-7B) narrows on both extremes of problem difficulty and when using strong generators — but these are also the regimes where verification gains are minimal overall.
+    </p>
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="image">
+          <img src="static/images/rq5.png" alt="Figure 8: Verification gain gap and TPR/TNR for weak vs strong verifiers across difficulty and generator strength">
+        </figure>
+        <p class="has-text-centered is-size-6 mt-2">
+          <strong>Figure 8.</strong> (a) Verification gain gap between strong (GPT-4o) and weak (Qwen2.5-7B) verifiers across problem difficulty and generator strength. The gap narrows at both difficulty extremes and for strong generators. (b) TPR increases for all verifiers as problems get easier, giving weak verifiers comparable correctness recognition. (c) TNR decreases as generator capability rises; the gap between verifiers also narrows — revealing that scaling from a 7B verifier to GPT-4o fails to overcome fundamental verification challenges in these regimes.
+        </p>
       </div>
     </div>
   </div>
